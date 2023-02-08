@@ -28,10 +28,10 @@ body {
   max-width: 70vmax;
   background-color: hotpink;
   /* background-color: turquoise; */
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   border-color: mediumpurple;
-  border-width: 5px;
+  border-width: 8px;
   border-style: outset;
 }
 
@@ -65,7 +65,11 @@ h1 {
   flex-direction: column;
   justify-content: center;
   margin: 5px;
-  /* padding: 5px; */
+  padding: 5px;
+  background-color: mediumslateblue;
+  border-color: mediumpurple;
+  border-width: 2px;
+  border-style: inset;
 }
 
 [class*="button-row"] {
