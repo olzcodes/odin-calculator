@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Quicksand:wght@600&display=swap");
+
+html {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  background-color: paleturquoise;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-family: "Electrolize", "Quicksand", Arial, sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 50vmax;
+  max-width: 70vmax;
+  background-color: hotpink;
+  /* background-color: turquoise; */
+  padding: 5px;
+  border-radius: 10px;
+  border-color: mediumpurple;
+  border-width: 5px;
+  border-style: outset;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  color: plum;
+  text-shadow: 1px 1px 2px black;
+  padding: 5px;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: xx-large;
+  min-height: 10vmax;
+  margin: 6px;
+  padding: 10px;
+  background-color: rgb(118, 172, 136);
+  color: darkslategrey;
+  text-shadow: 1px 1px 2px black;
+  border-color: mediumpurple;
+  border-width: 2px;
+  border-style: inset;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  /* padding: 5px; */
+}
+
+[class*="button-row"] {
+  display: flex;
+  justify-content: space-around;
+}
+
+button {
+  flex: 1;
+  font-size: x-large;
+  margin: 3px;
+  font-family: "Electrolize", "Quicksand", Arial, sans-serif;
+  background-color: lightpink;
+  /* background-color: orchid; */
+  color: mediumslateblue;
+  border-color: mediumpurple;
+  border-width: 2px;
+  border-style: outset;
+  padding-top: 4px;
+}
+
+button.operator {
+  background-color: plum;
+  /* background-color: orchid; */
+  color: mediumslateblue;
+  border-color: mediumpurple;
+  border-width: 2px;
+  border-style: outset;
+  padding-top: 4px;
+}
