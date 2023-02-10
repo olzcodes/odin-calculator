@@ -44,22 +44,16 @@ buttonsContainer.addEventListener("click", function (e) {
   }
   if (clicked === "operator") {
     number1 = displayValue;
-    console.log(number1);
     displayValue = "";
     operator = e.target.id;
-    console.log(operator);
   }
   if (clicked === "equal") {
     number2 = displayValue;
-    console.log(number2);
-    console.log(e.target.classList.value.split(" ")[1]);
     result = operate[operator](parseInt(number1), parseInt(number2));
-    console.log(result);
     displayValue = "";
     updateDisplayValue(result);
   }
   if (clicked === "clear") {
-    console.log(e.target.classList.value.split(" ")[1]);
     clear();
   }
 });
