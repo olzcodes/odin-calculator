@@ -26,7 +26,7 @@ body {
   flex-direction: column;
   min-height: 50vmax;
   max-width: 70vmax;
-  background-color: hotpink;
+  background-color: slateblue;
   margin: 20px;
   padding: 10px;
   border-radius: 10px;
@@ -40,6 +40,7 @@ h1 {
   display: flex;
   justify-content: center;
   color: plum;
+  /* color: mediumturquoise; */
   text-shadow: 1px 1px 2px black;
   padding: 5px;
 }
@@ -100,4 +101,14 @@ button.operator {
   border-width: 2px;
   border-style: outset;
   padding-top: 4px;
+}
+
+button.clear {
+  background-color: palevioletred;
+  color: white;
+}
+
+button.equal {
+  background-color: violet;
+  color: white;
 }
