@@ -14,18 +14,24 @@ const operate = {
 };
 
 let displayValue = "";
-let number1;
-let number2;
-let operator;
-let result;
+
+const newMemory = function () {
+  return {
+    temp: "",
+    number1: 0,
+    number2: 0,
+    operator: "",
+    result: 0,
+  };
+};
+
+let memory = newMemory();
 
 const clear = function () {
   displayValue = "";
   updateDisplayValue(0);
   displayValue = "";
-  number1 = 0;
-  number2 = 0;
-  operator = "";
+  memory = newMemory();
 };
 
 const displayEl = document.querySelector(".display");
@@ -40,20 +46,40 @@ const buttonsContainer = document.querySelector(".buttons-container");
 buttonsContainer.addEventListener("click", function (e) {
   const clicked = e.target.classList.value.split(" ")[1];
   if (clicked === "number") {
-    updateDisplayValue(e.target.textContent);
+    updateDisplayValue(e.target.id);
+    memory.temp += e.target.id;
   }
   if (clicked === "operator") {
-    number1 = displayValue;
+    if (memory.operator && memory.temp.split(",").length > 1) {
+      displayValue = "";
+      memory.number1 = parseFloat(memory.temp.split(",")[0]);
+      memory.number2 = parseFloat(memory.temp.split(",")[1]);
+      memory.temp = "";
+      memory.result = operate[memory.operator](memory.number1, memory.number2);
+      updateDisplayValue(memory.result);
+      memory.temp += memory.result;
+    }
     displayValue = "";
-    operator = e.target.id;
+    memory.temp += ",";
+    memory.operator = e.target.id;
   }
   if (clicked === "equal") {
-    number2 = displayValue;
-    result = operate[operator](parseInt(number1), parseInt(number2));
     displayValue = "";
-    updateDisplayValue(result);
+    memory.number1 = parseFloat(memory.temp.split(",")[0]);
+    memory.number2 = parseFloat(memory.temp.split(",")[1]);
+    memory.temp = "";
+    memory.result = operate[memory.operator](memory.number1, memory.number2);
+    if (memory.result.toString().length > 10) {
+      memory.result = memory.result.toFixed(2);
+    }
+    updateDisplayValue(memory.result);
+    memory.temp += memory.result;
+    displayValue = "";
   }
   if (clicked === "clear") {
     clear();
+    console.clear();
   }
+  console.log(e.target.id);
+  console.table(memory);
 });
