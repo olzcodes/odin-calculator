@@ -89,3 +89,30 @@ const clear = function () {
   displayValue = "";
   memory = newMemory();
 };
+
+const useKeyboard = function () {
+  window.addEventListener("keydown", function (e) {
+    if (e.code === "NumpadEnter") console.log(e.code);
+    if (e.code === "Escape") console.log(e.code);
+
+    if (e.code === "NumpadDivide") console.log(e.code);
+    if (e.code === "NumpadMultiply") console.log(e.code);
+    if (e.code === "NumpadSubtract") console.log(e.code);
+    if (e.code === "NumpadAdd") console.log(e.code);
+
+    if (e.code === "NumpadDecimal") console.log(e.code);
+
+    if (e.code === "Digit0" || e.code === "Numpad0") console.log(e.code);
+    if (e.code === "Digit1" || e.code === "Numpad1") console.log(e.code);
+    if (e.code === "Digit2" || e.code === "Numpad2") console.log(e.code);
+    if (e.code === "Digit3" || e.code === "Numpad3") console.log(e.code);
+    if (e.code === "Digit4" || e.code === "Numpad4") console.log(e.code);
+    if (e.code === "Digit5" || e.code === "Numpad5") console.log(e.code);
+    if (e.code === "Digit6" || e.code === "Numpad6") console.log(e.code);
+    if (e.code === "Digit7" || e.code === "Numpad7") console.log(e.code);
+    if (e.code === "Digit8" || e.code === "Numpad8") console.log(e.code);
+    if (e.code === "Digit9" || e.code === "Numpad9") console.log(e.code);
+  });
+};
+
+useKeyboard();
