@@ -1,5 +1,5 @@
 const displayEl = document.querySelector(".display");
-const buttonsContainer = document.querySelector(".buttons-container");
+const buttons = document.querySelectorAll("button");
 let displayValue = "";
 const displayMaxLength = 10;
 
@@ -35,21 +35,26 @@ const updateDisplayValue = function (number) {
   displayEl.textContent = displayValue;
 };
 
-buttonsContainer.addEventListener("click", function (e) {
-  const clicked = e.target.classList.value.split(" ")[1];
-  if (clicked === "number") {
-    updateDisplayValue(e.target.id);
-    memory.temp += e.target.id;
+const processInput = function () {
+  let inputType = this.classList.value.split(" ")[1];
+  let inputValue = this.id;
+
+  if (inputType === "number") {
+    updateDisplayValue(inputValue);
+    memory.temp += inputValue;
+    console.log(this);
   }
-  if (clicked === "operator") {
+
+  if (inputType === "operator") {
     if (
       memory.temp === "" ||
       memory.temp === "," ||
       memory.temp.split(",")[1] === ""
     ) {
-      memory.operator = e.target.id;
+      memory.operator = inputValue;
       return;
     }
+
     if (memory.operator && memory.temp.split(",").length > 1) {
       displayValue = "";
       memory.number1 = parseFloat(memory.temp.split(",")[0]);
@@ -61,9 +66,10 @@ buttonsContainer.addEventListener("click", function (e) {
     }
     displayValue = "";
     memory.temp += ",";
-    memory.operator = e.target.id;
+    memory.operator = inputValue;
   }
-  if (clicked === "equal") {
+
+  if (inputType === "equal") {
     if (memory.temp.split(",").length < 2 || memory.temp.split(",")[1] === "")
       return;
     displayValue = "";
@@ -75,13 +81,17 @@ buttonsContainer.addEventListener("click", function (e) {
     memory.temp += memory.result;
     displayValue = "";
   }
-  if (clicked === "clear") {
+
+  if (inputType === "clear") {
     clear();
     console.clear();
   }
-  console.log(e.target.id);
+
+  console.log(inputValue);
   console.table(memory);
-});
+};
+
+buttons.forEach((button) => button.addEventListener("click", processInput));
 
 const clear = function () {
   displayValue = "";
@@ -92,6 +102,7 @@ const clear = function () {
 
 const useKeyboard = function () {
   window.addEventListener("keydown", function (e) {
+    e.preventDefault();
     if (e.code === "NumpadEnter") console.log(e.code);
     if (e.code === "Escape") console.log(e.code);
 
