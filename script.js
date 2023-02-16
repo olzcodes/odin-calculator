@@ -1,3 +1,20 @@
+const displayEl = document.querySelector(".display");
+const buttonsContainer = document.querySelector(".buttons-container");
+let displayValue = "";
+const displayMaxLength = 10;
+
+const newMemory = function () {
+  return {
+    temp: "",
+    number1: 0,
+    number2: 0,
+    operator: "",
+    result: 0,
+  };
+};
+
+let memory = newMemory();
+
 const operate = {
   add: function (number1, number2) {
     return number1 + number2;
@@ -13,36 +30,10 @@ const operate = {
   },
 };
 
-let displayValue = "";
-let displayMaxLength = 10;
-
-const newMemory = function () {
-  return {
-    temp: "",
-    number1: 0,
-    number2: 0,
-    operator: "",
-    result: 0,
-  };
-};
-
-let memory = newMemory();
-
-const clear = function () {
-  displayValue = "";
-  updateDisplayValue(0);
-  displayValue = "";
-  memory = newMemory();
-};
-
-const displayEl = document.querySelector(".display");
-
 const updateDisplayValue = function (number) {
   displayValue = displayValue + number;
   displayEl.textContent = displayValue;
 };
-
-const buttonsContainer = document.querySelector(".buttons-container");
 
 buttonsContainer.addEventListener("click", function (e) {
   const clicked = e.target.classList.value.split(" ")[1];
@@ -91,3 +82,10 @@ buttonsContainer.addEventListener("click", function (e) {
   console.log(e.target.id);
   console.table(memory);
 });
+
+const clear = function () {
+  displayValue = "";
+  updateDisplayValue(0);
+  displayValue = "";
+  memory = newMemory();
+};
