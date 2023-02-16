@@ -14,6 +14,7 @@ const operate = {
 };
 
 let displayValue = "";
+let displayMaxLength = 10;
 
 const newMemory = function () {
   return {
@@ -50,6 +51,14 @@ buttonsContainer.addEventListener("click", function (e) {
     memory.temp += e.target.id;
   }
   if (clicked === "operator") {
+    if (
+      memory.temp === "" ||
+      memory.temp === "," ||
+      memory.temp.split(",")[1] === ""
+    ) {
+      memory.operator = e.target.id;
+      return;
+    }
     if (memory.operator && memory.temp.split(",").length > 1) {
       displayValue = "";
       memory.number1 = parseFloat(memory.temp.split(",")[0]);
@@ -64,14 +73,13 @@ buttonsContainer.addEventListener("click", function (e) {
     memory.operator = e.target.id;
   }
   if (clicked === "equal") {
+    if (memory.temp.split(",").length < 2 || memory.temp.split(",")[1] === "")
+      return;
     displayValue = "";
     memory.number1 = parseFloat(memory.temp.split(",")[0]);
     memory.number2 = parseFloat(memory.temp.split(",")[1]);
     memory.temp = "";
     memory.result = operate[memory.operator](memory.number1, memory.number2);
-    if (memory.result.toString().length > 10) {
-      memory.result = memory.result.toFixed(2);
-    }
     updateDisplayValue(memory.result);
     memory.temp += memory.result;
     displayValue = "";
