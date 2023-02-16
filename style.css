@@ -85,7 +85,6 @@ button {
   margin: 3px;
   font-family: "Electrolize", "Quicksand", Arial, sans-serif;
   background-color: lightpink;
-  /* background-color: orchid; */
   color: mediumslateblue;
   border-color: mediumpurple;
   border-width: 2px;
@@ -95,7 +94,6 @@ button {
 
 button.operator {
   background-color: plum;
-  /* background-color: orchid; */
   color: mediumslateblue;
   border-color: mediumpurple;
   border-width: 2px;
