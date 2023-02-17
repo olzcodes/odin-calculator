@@ -38,40 +38,31 @@ const updateDisplayValue = function (number) {
 const processInput = function () {
   let inputType = this.classList.value.split(" ")[1];
   let inputValue = this.id;
+  if (inputType === "number") inputNumber(inputValue);
+  if (inputType === "operator") inputOperator(inputValue);
+  if (inputType === "equal") inputEqual(inputValue);
+  if (inputType === "clear") clear();
+  console.log(this);
+  console.log(inputValue);
+  console.table(memory);
+};
 
-  if (inputType === "number") {
-    updateDisplayValue(inputValue);
-    memory.temp += inputValue;
-    console.log(this);
-  }
+const inputNumber = function (inputValue) {
+  updateDisplayValue(inputValue);
+  memory.temp += inputValue;
+};
 
-  if (inputType === "operator") {
-    if (
-      memory.temp === "" ||
-      memory.temp === "," ||
-      memory.temp.split(",")[1] === ""
-    ) {
-      memory.operator = inputValue;
-      return;
-    }
-
-    if (memory.operator && memory.temp.split(",").length > 1) {
-      displayValue = "";
-      memory.number1 = parseFloat(memory.temp.split(",")[0]);
-      memory.number2 = parseFloat(memory.temp.split(",")[1]);
-      memory.temp = "";
-      memory.result = operate[memory.operator](memory.number1, memory.number2);
-      updateDisplayValue(memory.result);
-      memory.temp += memory.result;
-    }
-    displayValue = "";
-    memory.temp += ",";
+const inputOperator = function (inputValue) {
+  if (
+    memory.temp === "" ||
+    memory.temp === "." ||
+    memory.temp.split(",")[1] === ""
+  ) {
     memory.operator = inputValue;
+    return;
   }
 
-  if (inputType === "equal") {
-    if (memory.temp.split(",").length < 2 || memory.temp.split(",")[1] === "")
-      return;
+  if (memory.temp.split(",").length > 1) {
     displayValue = "";
     memory.number1 = parseFloat(memory.temp.split(",")[0]);
     memory.number2 = parseFloat(memory.temp.split(",")[1]);
@@ -79,26 +70,43 @@ const processInput = function () {
     memory.result = operate[memory.operator](memory.number1, memory.number2);
     updateDisplayValue(memory.result);
     memory.temp += memory.result;
-    displayValue = "";
   }
 
-  if (inputType === "clear") {
-    clear();
-    console.clear();
-  }
-
-  console.log(inputValue);
-  console.table(memory);
+  displayValue = "";
+  memory.temp += ",";
+  memory.operator = inputValue;
 };
 
-buttons.forEach((button) => button.addEventListener("click", processInput));
+const inputEqual = function () {
+  if (
+    memory.temp.split(",").length < 2 ||
+    memory.temp.split(",")[1] === "" ||
+    memory.temp.split(",")[1] === "."
+  )
+    return;
+
+  if (memory.temp.split(",").length > 1) {
+    displayValue = "";
+    memory.number1 = parseFloat(memory.temp.split(",")[0]);
+    memory.number2 = parseFloat(memory.temp.split(",")[1]);
+    memory.temp = "";
+    memory.result = operate[memory.operator](memory.number1, memory.number2);
+    updateDisplayValue(memory.result);
+    memory.temp += memory.result;
+  }
+
+  displayValue = "";
+};
 
 const clear = function () {
   displayValue = "";
   updateDisplayValue(0);
   displayValue = "";
   memory = newMemory();
+  console.clear();
 };
+
+buttons.forEach((button) => button.addEventListener("click", processInput));
 
 const useKeyboard = function () {
   window.addEventListener("keydown", function (e) {
