@@ -111,26 +111,44 @@ buttons.forEach((button) => button.addEventListener("click", processInput));
 const useKeyboard = function () {
   window.addEventListener("keydown", function (e) {
     e.preventDefault();
-    if (e.code === "NumpadEnter") console.log(e.code);
-    if (e.code === "Escape") console.log(e.code);
 
-    if (e.code === "NumpadDivide") console.log(e.code);
-    if (e.code === "NumpadMultiply") console.log(e.code);
-    if (e.code === "NumpadSubtract") console.log(e.code);
-    if (e.code === "NumpadAdd") console.log(e.code);
+    const findButtonById = function (id) {
+      return Array.from(buttons).find((button) => button.id === id);
+    };
 
-    if (e.code === "NumpadDecimal") console.log(e.code);
+    if (e.code === "NumpadEnter") processInput.bind(findButtonById("equal"))();
+    if (e.code === "Escape") processInput.bind(findButtonById("clear"))();
 
-    if (e.code === "Digit0" || e.code === "Numpad0") console.log(e.code);
-    if (e.code === "Digit1" || e.code === "Numpad1") console.log(e.code);
-    if (e.code === "Digit2" || e.code === "Numpad2") console.log(e.code);
-    if (e.code === "Digit3" || e.code === "Numpad3") console.log(e.code);
-    if (e.code === "Digit4" || e.code === "Numpad4") console.log(e.code);
-    if (e.code === "Digit5" || e.code === "Numpad5") console.log(e.code);
-    if (e.code === "Digit6" || e.code === "Numpad6") console.log(e.code);
-    if (e.code === "Digit7" || e.code === "Numpad7") console.log(e.code);
-    if (e.code === "Digit8" || e.code === "Numpad8") console.log(e.code);
-    if (e.code === "Digit9" || e.code === "Numpad9") console.log(e.code);
+    if (e.code === "NumpadDivide")
+      processInput.bind(findButtonById("divide"))();
+    if (e.code === "NumpadMultiply")
+      processInput.bind(findButtonById("multiply"))();
+    if (e.code === "NumpadSubtract")
+      processInput.bind(findButtonById("subtract"))();
+    if (e.code === "NumpadAdd") processInput.bind(findButtonById("add"))();
+
+    if (e.code === "NumpadDecimal") processInput.bind(findButtonById("."))();
+
+    if (e.code === "Digit0" || e.code === "Numpad0")
+      processInput.bind(findButtonById("0"))();
+    if (e.code === "Digit1" || e.code === "Numpad1")
+      processInput.bind(findButtonById("1"))();
+    if (e.code === "Digit2" || e.code === "Numpad2")
+      processInput.bind(findButtonById("2"))();
+    if (e.code === "Digit3" || e.code === "Numpad3")
+      processInput.bind(findButtonById("3"))();
+    if (e.code === "Digit4" || e.code === "Numpad4")
+      processInput.bind(findButtonById("4"))();
+    if (e.code === "Digit5" || e.code === "Numpad5")
+      processInput.bind(findButtonById("5"))();
+    if (e.code === "Digit6" || e.code === "Numpad6")
+      processInput.bind(findButtonById("6"))();
+    if (e.code === "Digit7" || e.code === "Numpad7")
+      processInput.bind(findButtonById("7"))();
+    if (e.code === "Digit8" || e.code === "Numpad8")
+      processInput.bind(findButtonById("8"))();
+    if (e.code === "Digit9" || e.code === "Numpad9")
+      processInput.bind(findButtonById("9"))();
   });
 };
 
