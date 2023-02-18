@@ -62,14 +62,14 @@ h1 {
 }
 
 .display-input {
-  font-size: large;
-  height: 20px;
+  font-size: xx-large;
+  height: 36px;
   margin: 3px;
 }
 
 .display-result {
-  font-size: xx-large;
-  height: 36px;
+  font-size: 20px;
+  height: 20px;
   margin: 3px;
 }
 
@@ -104,12 +104,12 @@ button {
 }
 
 button.operator {
+  font-size: xx-large;
   background-color: plum;
   color: mediumslateblue;
   border-color: mediumpurple;
   border-width: 2px;
   border-style: outset;
-  padding-top: 4px;
 }
 
 button.clear {
