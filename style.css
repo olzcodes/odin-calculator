@@ -45,21 +45,32 @@ h1 {
   padding: 5px;
 }
 
-.display {
+.display-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  font-size: xx-large;
-  min-height: 10vmax;
+  height: 6rem;
   margin: 6px;
-  padding: 10px;
+  padding: 5px;
   background-color: rgb(118, 172, 136);
   color: darkslategrey;
   text-shadow: 1px 1px 2px black;
   border-color: mediumpurple;
   border-width: 2px;
   border-style: inset;
+}
+
+.display-input {
+  font-size: large;
+  height: 20px;
+  margin: 3px;
+}
+
+.display-result {
+  font-size: xx-large;
+  height: 36px;
+  margin: 3px;
 }
 
 .buttons-container {
