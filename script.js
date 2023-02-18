@@ -1,6 +1,8 @@
-const displayEl = document.querySelector(".display");
+const displayInputEl = document.querySelector(".display-input");
+const displayResultEl = document.querySelector(".display-result");
 const buttons = document.querySelectorAll("button");
-let displayValue = "";
+let displayInputValue = "";
+let displayResultValue = "";
 const displayMaxLength = 10;
 
 const newMemory = function () {
@@ -30,49 +32,58 @@ const operate = {
   },
 };
 
-const updateDisplayValue = function (number) {
-  displayValue = displayValue + number;
-  displayEl.textContent = displayValue;
+const updateDisplayInput = function (input) {
+  displayInputValue = displayInputValue + input;
+  displayInputEl.textContent = displayInputValue;
+};
+
+const updateDisplayResult = function (number) {
+  displayResultValue = displayResultValue + number;
+  displayResultEl.textContent = displayResultValue;
 };
 
 const processInput = function () {
   let inputType = this.classList.value.split(" ")[1];
   let inputValue = this.id;
   if (inputType === "number") inputNumber(inputValue);
-  if (inputType === "operator") inputOperator(inputValue);
+  if (inputType === "operator") {
+    let operatorSymbol = this.textContent;
+    inputOperator(inputValue, operatorSymbol);
+  }
   if (inputType === "equal") inputEqual(inputValue);
   if (inputType === "clear") clear();
-  console.log(this);
   console.log(inputValue);
   console.table(memory);
 };
 
 const inputNumber = function (inputValue) {
-  updateDisplayValue(inputValue);
+  updateDisplayInput(inputValue);
   memory.temp += inputValue;
 };
 
-const inputOperator = function (inputValue) {
+const inputOperator = function (inputValue, operatorSymbol) {
   if (
     memory.temp === "" ||
     memory.temp === "." ||
     memory.temp.split(",")[1] === ""
   ) {
     memory.operator = inputValue;
+    updateDisplayInput(operatorSymbol);
     return;
   }
 
   if (memory.temp.split(",").length > 1) {
-    displayValue = "";
+    displayResultValue = "";
     memory.number1 = parseFloat(memory.temp.split(",")[0]);
     memory.number2 = parseFloat(memory.temp.split(",")[1]);
     memory.temp = "";
     memory.result = operate[memory.operator](memory.number1, memory.number2);
-    updateDisplayValue(memory.result);
+    updateDisplayResult(memory.result);
     memory.temp += memory.result;
   }
 
-  displayValue = "";
+  updateDisplayInput(operatorSymbol);
+  displayResultValue = "";
   memory.temp += ",";
   memory.operator = inputValue;
 };
@@ -86,22 +97,23 @@ const inputEqual = function () {
     return;
 
   if (memory.temp.split(",").length > 1) {
-    displayValue = "";
+    displayResultValue = "";
     memory.number1 = parseFloat(memory.temp.split(",")[0]);
     memory.number2 = parseFloat(memory.temp.split(",")[1]);
     memory.temp = "";
     memory.result = operate[memory.operator](memory.number1, memory.number2);
-    updateDisplayValue(memory.result);
+    updateDisplayResult(memory.result);
     memory.temp += memory.result;
   }
 
-  displayValue = "";
+  displayResultValue = "";
 };
 
 const clear = function () {
-  displayValue = "";
-  updateDisplayValue(0);
-  displayValue = "";
+  displayInputValue = "";
+  updateDisplayInput("");
+  displayResultValue = "";
+  updateDisplayResult(0);
   memory = newMemory();
   console.clear();
 };
