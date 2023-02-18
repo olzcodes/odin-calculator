@@ -106,7 +106,16 @@ button.clear {
   color: white;
 }
 
-button.equal {
+button.backspace {
   background-color: violet;
   color: white;
+}
+
+button.equal {
+  background-color: mediumaquamarine;
+  color: white;
+}
+
+button.btn-0 {
+  flex: 3;
 }
