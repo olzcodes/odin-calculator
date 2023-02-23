@@ -17,41 +17,6 @@ const newMemory = function () {
 
 let memory = newMemory();
 
-const calculate = function () {
-  displayResultValue = "";
-  memory.number1 = parseFloat(memory.temp.split(",")[0]);
-  memory.number2 = parseFloat(memory.temp.split(",")[1]);
-  memory.temp = "";
-  memory.result = operate[memory.operator](memory.number1, memory.number2);
-  updateDisplayResult(memory.result);
-  memory.temp += memory.result;
-};
-
-const operate = {
-  add: function (number1, number2) {
-    return number1 + number2;
-  },
-  subtract: function (number1, number2) {
-    return number1 - number2;
-  },
-  multiply: function (number1, number2) {
-    return number1 * number2;
-  },
-  divide: function (number1, number2) {
-    return number1 / number2;
-  },
-};
-
-const updateDisplayInput = function (input) {
-  displayInputValue = displayInputValue + input;
-  displayInputEl.textContent = displayInputValue;
-};
-
-const updateDisplayResult = function (number) {
-  displayResultValue = displayResultValue + number;
-  displayResultEl.textContent = displayResultValue;
-};
-
 const processInput = function () {
   let inputType = this.classList.value.split(" ")[1];
   let inputValue = this.id;
@@ -65,6 +30,8 @@ const processInput = function () {
   console.log(inputValue);
   console.table(memory);
 };
+
+buttons.forEach((button) => button.addEventListener("click", processInput));
 
 const inputNumber = function (inputValue) {
   updateDisplayInput(inputValue);
@@ -116,7 +83,40 @@ const clear = function () {
   console.clear();
 };
 
-buttons.forEach((button) => button.addEventListener("click", processInput));
+const calculate = function () {
+  displayResultValue = "";
+  memory.number1 = parseFloat(memory.temp.split(",")[0]);
+  memory.number2 = parseFloat(memory.temp.split(",")[1]);
+  memory.temp = "";
+  memory.result = operate[memory.operator](memory.number1, memory.number2);
+  updateDisplayResult(memory.result);
+  memory.temp += memory.result;
+};
+
+const operate = {
+  add: function (number1, number2) {
+    return number1 + number2;
+  },
+  subtract: function (number1, number2) {
+    return number1 - number2;
+  },
+  multiply: function (number1, number2) {
+    return number1 * number2;
+  },
+  divide: function (number1, number2) {
+    return number1 / number2;
+  },
+};
+
+const updateDisplayInput = function (input) {
+  displayInputValue = displayInputValue + input;
+  displayInputEl.textContent = displayInputValue;
+};
+
+const updateDisplayResult = function (number) {
+  displayResultValue = displayResultValue + number;
+  displayResultEl.textContent = displayResultValue;
+};
 
 const useKeyboard = function () {
   window.addEventListener("keydown", function (e) {
