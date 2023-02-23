@@ -17,6 +17,16 @@ const newMemory = function () {
 
 let memory = newMemory();
 
+const calculate = function () {
+  displayResultValue = "";
+  memory.number1 = parseFloat(memory.temp.split(",")[0]);
+  memory.number2 = parseFloat(memory.temp.split(",")[1]);
+  memory.temp = "";
+  memory.result = operate[memory.operator](memory.number1, memory.number2);
+  updateDisplayResult(memory.result);
+  memory.temp += memory.result;
+};
+
 const operate = {
   add: function (number1, number2) {
     return number1 + number2;
@@ -73,13 +83,7 @@ const inputOperator = function (inputValue, operatorSymbol) {
   }
 
   if (memory.temp.split(",").length > 1) {
-    displayResultValue = "";
-    memory.number1 = parseFloat(memory.temp.split(",")[0]);
-    memory.number2 = parseFloat(memory.temp.split(",")[1]);
-    memory.temp = "";
-    memory.result = operate[memory.operator](memory.number1, memory.number2);
-    updateDisplayResult(memory.result);
-    memory.temp += memory.result;
+    calculate();
   }
 
   updateDisplayInput(operatorSymbol);
@@ -97,13 +101,7 @@ const inputEqual = function () {
     return;
 
   if (memory.temp.split(",").length > 1) {
-    displayResultValue = "";
-    memory.number1 = parseFloat(memory.temp.split(",")[0]);
-    memory.number2 = parseFloat(memory.temp.split(",")[1]);
-    memory.temp = "";
-    memory.result = operate[memory.operator](memory.number1, memory.number2);
-    updateDisplayResult(memory.result);
-    memory.temp += memory.result;
+    calculate();
   }
 
   displayResultValue = "";
