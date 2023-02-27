@@ -138,8 +138,9 @@ const useKeyboard = function () {
       return Array.from(buttons).find((button) => button.id === id);
     };
 
-    if (e.code === "NumpadEnter") processInput.bind(findButtonById("equal"))();
-    if (e.code === "Backspace")
+    if (e.code === "NumpadEnter" || e.code === "Enter")
+      processInput.bind(findButtonById("equal"))();
+    if (e.code === "Backspace" || e.code === "Delete")
       processInput.bind(findButtonById("backspace"))();
     if (e.code === "Escape") processInput.bind(findButtonById("clear"))();
 
