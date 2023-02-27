@@ -76,7 +76,7 @@ const backspace = function () {
   let newDisplayInputValue = displayInputValue.slice(0, -1);
   displayInputValue = "";
   updateDisplayInput(newDisplayInputValue);
-  calculate();
+  if (memory.operator) calculate();
 };
 
 const clear = function () {
