@@ -3,7 +3,6 @@ const displayResultEl = document.querySelector(".display-result");
 const buttons = document.querySelectorAll("button");
 let displayInputValue = "";
 let displayResultValue = "";
-const displayMaxLength = 10;
 
 const newMemory = function () {
   return {
@@ -36,6 +35,7 @@ buttons.forEach((button) => button.addEventListener("click", processInput));
 const inputNumber = function (inputValue) {
   updateDisplayInput(inputValue);
   memory.temp += inputValue;
+  if (memory.temp.split(",").length > 1) calculate();
 };
 
 const inputOperator = function (inputValue, operatorSymbol) {
@@ -49,9 +49,7 @@ const inputOperator = function (inputValue, operatorSymbol) {
     return;
   }
 
-  if (memory.temp.split(",").length > 1) {
-    calculate();
-  }
+  if (memory.temp.split(",").length > 1) calculate("operator");
 
   updateDisplayInput(operatorSymbol);
   displayResultValue = "";
@@ -67,9 +65,7 @@ const inputEqual = function () {
   )
     return;
 
-  if (memory.temp.split(",").length > 1) {
-    calculate();
-  }
+  if (memory.temp.split(",").length > 1) calculate("equal");
 
   displayResultValue = "";
 };
@@ -83,14 +79,21 @@ const clear = function () {
   console.clear();
 };
 
-const calculate = function () {
+const calculate = function (trigger) {
   displayResultValue = "";
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
-  memory.temp = "";
   memory.result = operate[memory.operator](memory.number1, memory.number2);
   updateDisplayResult(memory.result);
-  memory.temp += memory.result;
+
+  if (trigger === "operator" || trigger === "equal") {
+    memory = newMemory();
+    memory.temp = displayResultValue;
+    displayInputValue = "";
+    updateDisplayInput(displayResultValue);
+    displayResultValue = "";
+    updateDisplayResult(0);
+  }
 };
 
 const operate = {
