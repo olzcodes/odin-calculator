@@ -25,6 +25,7 @@ const processInput = function () {
     inputOperator(inputValue, operatorSymbol);
   }
   if (inputType === "equal") inputEqual(inputValue);
+  if (inputType === "backspace") backspace();
   if (inputType === "clear") clear();
   console.log(inputValue);
   console.table(memory);
@@ -70,6 +71,14 @@ const inputEqual = function () {
   displayResultValue = "";
 };
 
+const backspace = function () {
+  memory.temp = memory.temp.slice(0, -1);
+  let newDisplayInputValue = displayInputValue.slice(0, -1);
+  displayInputValue = "";
+  updateDisplayInput(newDisplayInputValue);
+  calculate();
+};
+
 const clear = function () {
   memory = newMemory();
   displayInputValue = "";
@@ -82,7 +91,7 @@ const clear = function () {
 const calculate = function (trigger) {
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
-  memory.result = operate[memory.operator](memory.number1, memory.number2);
+  memory.result = operate[memory.operator](memory.number1, memory.number2) || 0;
   displayResultValue = "";
   updateDisplayResult(memory.result);
 
@@ -130,6 +139,8 @@ const useKeyboard = function () {
     };
 
     if (e.code === "NumpadEnter") processInput.bind(findButtonById("equal"))();
+    if (e.code === "Backspace")
+      processInput.bind(findButtonById("backspace"))();
     if (e.code === "Escape") processInput.bind(findButtonById("clear"))();
 
     if (e.code === "NumpadDivide")
