@@ -51,10 +51,10 @@ const inputOperator = function (inputValue, operatorSymbol) {
 
   if (memory.temp.split(",").length > 1) calculate("operator");
 
-  updateDisplayInput(operatorSymbol);
-  displayResultValue = "";
   memory.temp += ",";
   memory.operator = inputValue;
+  updateDisplayInput(operatorSymbol);
+  displayResultValue = "";
 };
 
 const inputEqual = function () {
@@ -71,19 +71,19 @@ const inputEqual = function () {
 };
 
 const clear = function () {
+  memory = newMemory();
   displayInputValue = "";
   updateDisplayInput("");
   displayResultValue = "";
   updateDisplayResult(0);
-  memory = newMemory();
   console.clear();
 };
 
 const calculate = function (trigger) {
-  displayResultValue = "";
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
   memory.result = operate[memory.operator](memory.number1, memory.number2);
+  displayResultValue = "";
   updateDisplayResult(memory.result);
 
   if (trigger === "operator" || trigger === "equal") {
@@ -112,12 +112,12 @@ const operate = {
 };
 
 const updateDisplayInput = function (input) {
-  displayInputValue = displayInputValue + input;
+  displayInputValue += input;
   displayInputEl.textContent = displayInputValue;
 };
 
 const updateDisplayResult = function (number) {
-  displayResultValue = displayResultValue + number;
+  displayResultValue += number;
   displayResultEl.textContent = displayResultValue;
 };
 
