@@ -37,7 +37,7 @@ const invalidInput = function (inputValue) {
   // Prevent multiple decimal points in first number
   if (
     memory.temp.split(",")[0].includes(".") &&
-    !memory.temp.split(",")[1] &&
+    !memory.temp.includes(",") &&
     inputValue === "."
   )
     return true;
