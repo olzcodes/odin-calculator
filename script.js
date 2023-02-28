@@ -75,12 +75,17 @@ const inputOperator = function (inputValue, operatorSymbol) {
     memory.temp === "." ||
     memory.temp.split(",")[1] === ""
   ) {
-    memory.operator = inputValue;
-    updateDisplayInput(operatorSymbol);
+    if (operatorSymbol === "−") {
+      memory.temp += "-";
+      updateDisplayInput(operatorSymbol);
+    }
     return;
   }
 
-  if (memory.temp.split(",").length > 1) calculate("operator");
+  if (memory.temp.split(",").length > 1 && !isNaN(memory.temp.split(",")[1]))
+    calculate("operator");
+
+  if (memory.temp.includes(",")) return;
 
   memory.temp += ",";
   memory.operator = inputValue;
