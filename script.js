@@ -33,7 +33,37 @@ const processInput = function () {
 
 buttons.forEach((button) => button.addEventListener("click", processInput));
 
+const invalidInput = function (inputValue) {
+  // Prevent multiple decimal points in first number
+  if (
+    memory.temp.split(",")[0].includes(".") &&
+    !memory.temp.split(",")[1] &&
+    inputValue === "."
+  )
+    return true;
+  // Prevent multiple decimal points in second number
+  if (memory.temp.split(",")[1]?.includes(".") && inputValue === ".")
+    return true;
+};
+
+const autoCorrectInput = function (inputValue) {
+  const deletePreviousInput = function () {
+    memory.temp = memory.temp.slice(0, -1);
+    displayInputValue = displayInputValue.slice(0, -1);
+  };
+  // Delete leading zeroes in first number, if any
+  if (memory.temp.slice(0) === "0" && !isNaN(inputValue)) {
+    deletePreviousInput();
+  }
+  // Delete leading zeroes in second number, if any
+  if (memory.temp.split(",")[1] === "0" && !isNaN(inputValue)) {
+    deletePreviousInput();
+  }
+};
+
 const inputNumber = function (inputValue) {
+  if (invalidInput(inputValue)) return;
+  autoCorrectInput(inputValue);
   updateDisplayInput(inputValue);
   memory.temp += inputValue;
   if (memory.temp.split(",").length > 1) calculate();
