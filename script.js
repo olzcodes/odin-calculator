@@ -66,7 +66,7 @@ const inputNumber = function (inputValue) {
   autoCorrectInput(inputValue);
   updateDisplayInput(inputValue);
   memory.temp += inputValue;
-  if (memory.temp.split(",").length > 1) calculate();
+  if (memory.temp.includes(",")) calculate();
 };
 
 const inputOperator = function (inputValue, operatorSymbol) {
@@ -82,8 +82,7 @@ const inputOperator = function (inputValue, operatorSymbol) {
     return;
   }
 
-  if (memory.temp.split(",").length > 1 && !isNaN(memory.temp.split(",")[1]))
-    calculate("operator");
+  if (memory.temp.includes(",")) calculate("operator");
 
   if (memory.temp.includes(",")) return;
 
@@ -94,14 +93,9 @@ const inputOperator = function (inputValue, operatorSymbol) {
 };
 
 const inputEqual = function () {
-  if (
-    memory.temp.split(",").length < 2 ||
-    memory.temp.split(",")[1] === "" ||
-    memory.temp.split(",")[1] === "."
-  )
-    return;
+  if (!memory.temp.includes(",")) return;
 
-  if (memory.temp.split(",").length > 1) calculate("equal");
+  if (memory.temp.includes(",")) calculate("equal");
 
   displayResultValue = "";
 };
