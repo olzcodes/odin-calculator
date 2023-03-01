@@ -46,7 +46,7 @@ const invalidInput = function (inputValue) {
     return true;
 };
 
-const autoCorrectInput = function (inputValue) {
+const autoCorrectNumberInput = function (inputValue) {
   const deletePreviousInput = function () {
     memory.temp = memory.temp.slice(0, -1);
     displayInputValue = displayInputValue.slice(0, -1);
@@ -59,11 +59,22 @@ const autoCorrectInput = function (inputValue) {
   if (memory.temp.split(",")[1] === "0" && !isNaN(inputValue)) {
     deletePreviousInput();
   }
+  // Add leading zeroes in front of decimals, if missing
+  if (memory.temp.slice(0) === ".") {
+    memory.temp = "0.";
+    displayInputValue = "0.";
+  }
+  if (memory.temp.split(",")[1] === ".") {
+    memory.temp = memory.temp.slice(0, -1);
+    memory.temp += "0.";
+    displayInputValue = displayInputValue.slice(0, -1);
+    displayInputValue += "0.";
+  }
 };
 
 const inputNumber = function (inputValue) {
   if (invalidInput(inputValue)) return;
-  autoCorrectInput(inputValue);
+  autoCorrectNumberInput(inputValue);
   updateDisplayInput(inputValue);
   memory.temp += inputValue;
   if (memory.temp.includes(",")) calculate();
