@@ -118,6 +118,7 @@ button.clear {
 button.backspace {
   background-color: violet;
   color: white;
+  padding-bottom: 2px;
 }
 
 button.equal {
