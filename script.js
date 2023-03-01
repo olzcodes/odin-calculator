@@ -94,6 +94,9 @@ const inputOperator = function (inputValue, operatorSymbol) {
     return;
   }
 
+  if (memory.temp.split(",")[1] === "." || memory.temp.slice(-2) === ",-")
+    return;
+
   if (memory.temp.includes(",")) {
     calculate("operator");
   }
