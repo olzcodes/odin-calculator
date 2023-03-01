@@ -85,7 +85,6 @@ const inputOperator = function (inputValue, operatorSymbol) {
 
   if (memory.temp.includes(",")) {
     calculate("operator");
-    return;
   }
 
   memory.temp += ",";
