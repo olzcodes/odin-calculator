@@ -70,11 +70,12 @@ const inputNumber = function (inputValue) {
 };
 
 const inputOperator = function (inputValue, operatorSymbol) {
-  if (
-    memory.temp === "" ||
-    memory.temp === "." ||
-    memory.temp.split(",")[1] === ""
-  ) {
+  // Prevent input of operator for specific scenarios
+  if (memory.temp === "-" || memory.temp === "-." || memory.temp === ".")
+    return;
+
+  // Allow input of minus sign in front of numbers
+  if (memory.temp === "" || memory.temp.split(",")[1] === "") {
     if (operatorSymbol === "−") {
       memory.temp += "-";
       updateDisplayInput(operatorSymbol);
@@ -82,9 +83,10 @@ const inputOperator = function (inputValue, operatorSymbol) {
     return;
   }
 
-  if (memory.temp.includes(",")) calculate("operator");
-
-  if (memory.temp.includes(",")) return;
+  if (memory.temp.includes(",")) {
+    calculate("operator");
+    return;
+  }
 
   memory.temp += ",";
   memory.operator = inputValue;
@@ -93,9 +95,9 @@ const inputOperator = function (inputValue, operatorSymbol) {
 };
 
 const inputEqual = function () {
-  if (!memory.temp.includes(",")) return;
+  if (memory.temp.split(",")[1] === "") return;
 
-  if (memory.temp.includes(",")) calculate("equal");
+  calculate("equal");
 
   displayResultValue = "";
 };
@@ -118,6 +120,7 @@ const clear = function () {
 };
 
 const calculate = function (trigger) {
+  if (isNaN(memory.temp.split(",")[1])) return;
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
   memory.result = operate[memory.operator](memory.number1, memory.number2) || 0;
