@@ -46,17 +46,23 @@ const invalidInput = function (inputValue) {
     return true;
 };
 
-const autoCorrectNumberInput = function (inputValue) {
+const autoCorrectNumberInput = function (value) {
   const deletePreviousInput = function () {
     memory.temp = memory.temp.slice(0, -1);
     displayInputValue = displayInputValue.slice(0, -1);
   };
   // Delete leading zeroes in first number, if any
-  if (memory.temp.slice(0) === "0" && !isNaN(inputValue)) {
+  if (memory.temp.slice(0) === "0" && !isNaN(value)) {
+    deletePreviousInput();
+  }
+  if (memory.temp.slice(0) === "-0" && !isNaN(value)) {
     deletePreviousInput();
   }
   // Delete leading zeroes in second number, if any
-  if (memory.temp.split(",")[1] === "0" && !isNaN(inputValue)) {
+  if (memory.temp.split(",")[1] === "0" && !isNaN(value)) {
+    deletePreviousInput();
+  }
+  if (memory.temp.split(",")[1] === "-0" && !isNaN(value)) {
     deletePreviousInput();
   }
   // Add leading zeroes in front of decimals, if missing
@@ -70,6 +76,30 @@ const autoCorrectNumberInput = function (inputValue) {
     displayInputValue = displayInputValue.slice(0, -1);
     displayInputValue += "0.";
   }
+  // Add leading zeroes in front of negative decimals, if missing
+  if (memory.temp.slice(0) === "-.") {
+    memory.temp = "-0.";
+    displayInputValue = "-0.";
+  }
+  if (memory.temp.split(",")[1] === "-.") {
+    memory.temp = memory.temp.slice(0, -2);
+    memory.temp += "-0.";
+    displayInputValue = displayInputValue.slice(0, -2);
+    displayInputValue += "-0.";
+  }
+  // Delete minus sign if the first number is zero
+  if (memory.temp.slice(0) === "-0,") {
+    memory.temp = memory.temp.slice(-2);
+    displayInputValue = displayInputValue.slice(-2);
+  }
+  // Delete decimal point if there is no number after
+  if (memory.temp.slice(-2) === ".,") {
+    memory.temp = memory.temp.slice(0, -2);
+    memory.temp += ",";
+    displayInputValue = displayInputValue.slice(0, -2);
+    displayInputValue += value;
+  }
+  updateDisplayInput("");
 };
 
 const inputNumber = function (inputValue) {
@@ -104,6 +134,7 @@ const inputOperator = function (inputValue, operatorSymbol) {
   memory.temp += ",";
   memory.operator = inputValue;
   updateDisplayInput(operatorSymbol);
+  autoCorrectNumberInput(operatorSymbol);
   displayResultValue = "";
 };
 
