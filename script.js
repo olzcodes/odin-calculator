@@ -24,7 +24,7 @@ const processInput = function () {
     let operatorSymbol = this.textContent;
     inputOperator(inputValue, operatorSymbol);
   }
-  if (inputType === "equal") inputEqual(inputValue);
+  if (inputType === "equal") inputEqual();
   if (inputType === "backspace") backspace();
   if (inputType === "clear") clear();
   console.log(inputValue);
