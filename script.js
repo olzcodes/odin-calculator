@@ -164,7 +164,6 @@ const clear = function () {
 };
 
 const calculate = function (trigger) {
-  if (isNaN(memory.temp.split(",")[1])) return;
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
   memory.result = operate[memory.operator](memory.number1, memory.number2) || 0;
