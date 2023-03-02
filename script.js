@@ -142,8 +142,6 @@ const inputEqual = function () {
   if (memory.temp.split(",")[1] === "") return;
 
   calculate("equal");
-
-  displayResultValue = "";
 };
 
 const backspace = function () {
@@ -157,18 +155,23 @@ const backspace = function () {
 const clear = function () {
   memory = newMemory();
   displayInputValue = "";
-  updateDisplayInput("");
+  updateDisplayInput("READY");
+  displayInputValue = "";
   displayResultValue = "";
-  updateDisplayResult(0);
+  updateDisplayResult("");
   console.clear();
 };
 
 const calculate = function (trigger) {
   memory.number1 = parseFloat(memory.temp.split(",")[0]);
   memory.number2 = parseFloat(memory.temp.split(",")[1]);
-  memory.result = operate[memory.operator](memory.number1, memory.number2) || 0;
+  memory.result = operate[memory.operator](memory.number1, memory.number2);
   displayResultValue = "";
-  updateDisplayResult(memory.result);
+  if (isNaN(memory.result)) {
+    updateDisplayResult("");
+  } else {
+    updateDisplayResult(memory.result);
+  }
 
   if (trigger === "operator" || trigger === "equal") {
     memory = newMemory();
@@ -176,7 +179,7 @@ const calculate = function (trigger) {
     displayInputValue = "";
     updateDisplayInput(displayResultValue);
     displayResultValue = "";
-    updateDisplayResult(0);
+    updateDisplayResult("");
   }
 };
 
@@ -202,7 +205,7 @@ const updateDisplayInput = function (input) {
 
 const updateDisplayResult = function (number) {
   displayResultValue += number;
-  displayResultEl.textContent = displayResultValue;
+  displayResultEl.textContent = `= ${displayResultValue}`;
 };
 
 const useKeyboard = function () {
