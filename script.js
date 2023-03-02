@@ -181,6 +181,11 @@ const calculate = function (trigger) {
     displayResultValue = "";
     updateDisplayResult("");
   }
+
+  if (memory.result === Infinity) {
+    displayResultValue = "";
+    updateDisplayResult(atob("RnV0dXJlIHByaWNlIG9mIEJpdGNvaW4="));
+  }
 };
 
 const operate = {
