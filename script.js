@@ -139,7 +139,7 @@ const inputOperator = function (inputValue, operatorSymbol) {
 };
 
 const inputEqual = function () {
-  if (memory.temp.split(",")[1] === "") return;
+  if (!memory.temp.split(",")[1]) return;
 
   calculate("equal");
 };
