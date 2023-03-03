@@ -4,6 +4,7 @@ html {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  /* background-color: black; */
   background-color: paleturquoise;
 }
 
@@ -25,20 +26,24 @@ body {
   display: flex;
   flex-direction: column;
   background-color: slateblue;
-  margin: 20px;
+  width: 90%;
+  max-width: 320px;
+  margin: 120px 0px 20px 0px;
   padding: 10px;
   border-radius: 10px;
   border-color: mediumpurple;
   border-width: 8px;
   border-style: outset;
+  /* box-shadow: 4px 1px 15px 2px black; */
   box-shadow: 1px 1px 5px 2px black;
 }
 
 h1 {
   display: flex;
   justify-content: center;
+  color: mediumturquoise;
+  color: tomato;
   color: plum;
-  /* color: mediumturquoise; */
   text-shadow: 1px 1px 2px black;
   padding: 5px;
 }
@@ -127,5 +132,5 @@ button.equal {
 }
 
 button.btn-0 {
-  flex: 2.76;
+  flex: 2.56;
 }
