@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Quicksand:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Electrolize");
 
 html {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  /* background-color: black; */
   background-color: paleturquoise;
 }
 
@@ -19,7 +18,7 @@ html {
 body {
   display: flex;
   justify-content: center;
-  font-family: "Electrolize", "Quicksand", Arial, sans-serif;
+  font-family: "Electrolize", Arial, sans-serif;
 }
 
 .main-container {
@@ -28,14 +27,14 @@ body {
   background-color: slateblue;
   width: 90%;
   max-width: 320px;
-  margin: 120px 0px 20px 0px;
+  margin: 110px 0px 20px 0px;
   padding: 10px;
   border-radius: 10px;
   border-color: mediumpurple;
   border-width: 8px;
   border-style: outset;
-  /* box-shadow: 4px 1px 15px 2px black; */
-  box-shadow: 1px 1px 5px 2px black;
+  /* box-shadow: 1px 1px 5px 2px black; */
+  box-shadow: 4px 1px 15px 2px black;
 }
 
 h1 {
@@ -97,7 +96,7 @@ button {
   flex: 1;
   font-size: x-large;
   margin: 3px;
-  font-family: "Electrolize", "Quicksand", Arial, sans-serif;
+  font-family: "Electrolize", Arial, sans-serif;
   background-color: lightpink;
   color: mediumslateblue;
   border-color: mediumpurple;
@@ -134,3 +133,9 @@ button.equal {
 button.btn-0 {
   flex: 2.56;
 }
+
+/* button.on {
+  color: aqua;
+  border-color: lime;
+  box-shadow: 1px 1px 5px 2px turquoise;
+} */
