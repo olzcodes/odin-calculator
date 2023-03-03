@@ -59,6 +59,8 @@ h1 {
   border-color: mediumpurple;
   border-width: 2px;
   border-style: inset;
+  overflow: auto;
+  overflow: hidden;
 }
 
 .display-input {
@@ -71,6 +73,9 @@ h1 {
   font-size: 20px;
   height: 20px;
   margin: 3px;
+  overflow: auto;
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .buttons-container {
