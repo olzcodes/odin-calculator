@@ -8,10 +8,10 @@ https://www.theodinproject.com/lessons/foundations-calculator
 
 ## Screenshots
 
-Basic calculation
+Basic calculation  
 ![screenshot of basic calculation](./screenshots/screenshot-1.png)
 
-Basic calculation with negative numbers and decimals
+Basic calculation with negative number and decimals  
 ![screenshot of basic calculation with negative numbers and decimals](./screenshots/screenshot-2.png)
 
 ## To-Do
