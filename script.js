@@ -237,26 +237,11 @@ const useKeyboard = function () {
 
     if (e.code === "NumpadDecimal") processInput.bind(findButtonById("."))();
 
-    if (e.code === "Digit0" || e.code === "Numpad0")
-      processInput.bind(findButtonById("0"))();
-    if (e.code === "Digit1" || e.code === "Numpad1")
-      processInput.bind(findButtonById("1"))();
-    if (e.code === "Digit2" || e.code === "Numpad2")
-      processInput.bind(findButtonById("2"))();
-    if (e.code === "Digit3" || e.code === "Numpad3")
-      processInput.bind(findButtonById("3"))();
-    if (e.code === "Digit4" || e.code === "Numpad4")
-      processInput.bind(findButtonById("4"))();
-    if (e.code === "Digit5" || e.code === "Numpad5")
-      processInput.bind(findButtonById("5"))();
-    if (e.code === "Digit6" || e.code === "Numpad6")
-      processInput.bind(findButtonById("6"))();
-    if (e.code === "Digit7" || e.code === "Numpad7")
-      processInput.bind(findButtonById("7"))();
-    if (e.code === "Digit8" || e.code === "Numpad8")
-      processInput.bind(findButtonById("8"))();
-    if (e.code === "Digit9" || e.code === "Numpad9")
-      processInput.bind(findButtonById("9"))();
+    let buttonId = e.code.slice(-1);
+    if (!isNaN(buttonId)) {
+      let button = findButtonById(`${buttonId}`);
+      processInput.bind(button)();
+    }
   });
 };
 
