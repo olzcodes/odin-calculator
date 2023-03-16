@@ -29,9 +29,9 @@ Basic calculation with negative number and decimals
   - [DONE] Prevent input of multiple leading zeros
   - [DONE] Prevent multiple decimal points in one number
   - [DONE] Automatically remove redundant decimal points
-- Improve handling of display overflow
+- [DONE] Improve handling of display overflow
 - Improve handling of inaccuracies arising from floating point calculations e.g.  
-  0.1 + 0.2 = 0.3000000000000004  
+  0.1 + 0.2 = 0.30000000000000004
   0.3 + 0.6 = 0.8999999999999999
 
 ## What I learned from this project
