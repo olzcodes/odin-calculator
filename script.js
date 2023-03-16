@@ -27,6 +27,8 @@ const processInput = function () {
   if (inputType === "equal") inputEqual();
   if (inputType === "backspace") backspace();
   if (inputType === "clear") clear();
+  displayInputEl.scrollLeft = displayInputEl.scrollWidth;
+  displayResultEl.scrollLeft = displayResultEl.scrollWidth;
   console.log(inputValue);
   console.table(memory);
 };
