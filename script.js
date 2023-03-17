@@ -31,7 +31,7 @@ const processInput = function () {
   if (inputType === "clear") clear();
   displayInputEl.scrollLeft = displayInputEl.scrollWidth;
   displayResultEl.scrollLeft = displayResultEl.scrollWidth;
-  console.log(inputValue);
+  console.clear();
   console.table(memory);
 };
 
