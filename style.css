@@ -60,6 +60,33 @@ h1 {
   border-style: inset;
 }
 
+.backlight-green {
+  background-color: lightgreen;
+  border-color: yellowgreen;
+}
+
+.glow-green {
+  box-shadow: 1px 1px 15px 1px mediumaquamarine;
+}
+
+.backlight-blue {
+  background-color: cyan;
+  border-color: mediumturquoise;
+}
+
+.glow-blue {
+  box-shadow: 1px 1px 15px 1px mediumturquoise;
+}
+
+.backlight-orange {
+  background-color: sandybrown;
+  border-color: darksalmon;
+}
+
+.glow-orange {
+  box-shadow: 1px 1px 15px 1px lightsalmon;
+}
+
 textarea {
   width: 100%;
   font-family: "Electrolize", Arial, sans-serif;
@@ -142,6 +169,19 @@ button.equal {
 button.btn-0 {
   flex: 2.56;
 }
+
+button:active {
+  border-style: inset;
+  color: cyan;
+  color: lawngreen;
+}
+
+/* .buttons-container:active {
+  color: aqua;
+  background-color: cyan;
+  border-color: lime;
+  box-shadow: 1px 1px 5px 2px turquoise;
+} */
 
 /* button.on {
   color: aqua;
