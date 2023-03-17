@@ -1,3 +1,5 @@
+const h1El = document.querySelector("h1");
+const displayContainerEl = document.querySelector(".display-container");
 const displayInputEl = document.querySelector(".display-input");
 const displayResultEl = document.querySelector(".display-result");
 const buttons = document.querySelectorAll("button");
@@ -248,3 +250,27 @@ const useKeyboard = function () {
 };
 
 useKeyboard();
+
+const toggleBacklight = function () {
+  let modes = ["off", "green", "blue", "orange"];
+  let currentMode = 0;
+  h1El.addEventListener("click", function () {
+    displayContainerEl.classList.remove(`backlight-${modes[currentMode]}`);
+    displayContainerEl.classList.remove(`glow-${modes[currentMode]}`);
+    displayInputEl.classList.remove(`backlight-${modes[currentMode]}`);
+    displayResultEl.classList.remove(`backlight-${modes[currentMode]}`);
+
+    if (currentMode < modes.length - 1) {
+      currentMode++;
+    } else {
+      currentMode = 0;
+    }
+
+    displayContainerEl.classList.toggle(`backlight-${modes[currentMode]}`);
+    displayContainerEl.classList.toggle(`glow-${modes[currentMode]}`);
+    displayInputEl.classList.toggle(`backlight-${modes[currentMode]}`);
+    displayResultEl.classList.toggle(`backlight-${modes[currentMode]}`);
+  });
+};
+
+toggleBacklight();
