@@ -169,22 +169,3 @@ button.equal {
 button.btn-0 {
   flex: 2.56;
 }
-
-button:active {
-  border-style: inset;
-  color: cyan;
-  color: lawngreen;
-}
-
-/* .buttons-container:active {
-  color: aqua;
-  background-color: cyan;
-  border-color: lime;
-  box-shadow: 1px 1px 5px 2px turquoise;
-} */
-
-/* button.on {
-  color: aqua;
-  border-color: lime;
-  box-shadow: 1px 1px 5px 2px turquoise;
-} */
