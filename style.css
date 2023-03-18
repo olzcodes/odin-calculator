@@ -146,8 +146,6 @@ button.operator {
   background-color: plum;
   color: mediumslateblue;
   border-color: mediumpurple;
-  border-width: 2px;
-  border-style: outset;
 }
 
 button.clear {
