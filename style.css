@@ -144,8 +144,6 @@ button {
 button.operator {
   font-size: xx-large;
   background-color: plum;
-  color: mediumslateblue;
-  border-color: mediumpurple;
 }
 
 button.clear {
