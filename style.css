@@ -165,3 +165,13 @@ button.equal {
 button.btn-0 {
   flex: 2.56;
 }
+
+button:active {
+  border-style: inset;
+  border-color: mediumpurple;
+  color: plum;
+}
+
+.button-row-1 > button:active {
+  color: rosybrown;
+}
