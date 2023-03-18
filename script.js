@@ -253,7 +253,7 @@ useKeyboard();
 
 const toggleBacklight = function () {
   let modes = ["off", "green", "blue", "orange"];
-  let currentMode = 0;
+  let currentMode = 0.5;
   h1El.addEventListener("click", function () {
     displayContainerEl.classList.remove(`backlight-${modes[currentMode]}`);
     displayContainerEl.classList.remove(`glow-${modes[currentMode]}`);
@@ -261,9 +261,9 @@ const toggleBacklight = function () {
     displayResultEl.classList.remove(`backlight-${modes[currentMode]}`);
 
     if (currentMode < modes.length - 1) {
-      currentMode++;
+      currentMode = currentMode + 0.5;
     } else {
-      currentMode = 0;
+      currentMode = 0.5;
     }
 
     displayContainerEl.classList.toggle(`backlight-${modes[currentMode]}`);
