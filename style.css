@@ -81,11 +81,21 @@ h1 {
 
 .backlight-orange {
   background-color: sandybrown;
-  border-color: darksalmon;
+  border-color: peru;
 }
 
 .glow-orange {
   box-shadow: 1px 1px 15px 1px lightsalmon;
+}
+
+.backlight-pink {
+  background-color: pink;
+  border-color: violet;
+  border-color: plum;
+}
+
+.glow-pink {
+  box-shadow: 1px 1px 15px 1px lightpink;
 }
 
 textarea {
