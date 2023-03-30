@@ -114,12 +114,24 @@ textarea {
   font-size: xx-large;
   height: 42px;
   margin: 3px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .display-result {
   font-size: 20px;
   height: 28px;
   margin: 3px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.display-input::-webkit-scrollbar {
+  display: none;
+}
+
+.display-result::-webkit-scrollbar {
+  display: none;
 }
 
 .buttons-container {
