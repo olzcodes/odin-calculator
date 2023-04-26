@@ -134,7 +134,6 @@ textarea {
 
 .display-input::-webkit-scrollbar,
 .display-result::-webkit-scrollbar {
-  background: rgb(118, 172, 136);
   height: 3px;
 }
 
